@@ -1,131 +1,49 @@
-# ButterCut
+EditPremier
+AI-Powered Video Editing with Claude Code
+Turn your raw footage into polished rough cuts — automatically. EditPremier uses Claude Code to analyze video footage, generate transcripts, and build ready-to-import timelines for Adobe Premiere Pro, Final Cut Pro, and DaVinci Resolve.
 
-**Make Claude your Video Editor**
+Based on the open-source ButterCut project.
 
-[buttercut.io](https://buttercut.io)
 
-Give Claude Code your video footage. Claude analyzes it, then builds roughcuts and sequences for Final Cut, Premiere, and Resolve.
+What It Does
 
-Behind the scenes Claude uses ButterCut Skills and a little Ruby library to generate timelines for your editor.
+Transcribes audio using WhisperX
+Analyzes video frames and generates visual transcripts
+Creates rough cuts with intelligent clip selection
+Exports native timeline formats (FCPXML, Premiere XML)
+Interactive workflow — Claude asks your preferences and makes editorial decisions
 
-## Watch the Demo
+Demo
+Show Image
+Quick Start
+bash# Clone
+git clone https://github.com/ByX0000/editpremier.git && cd editpremier
 
-[![I Taught Claude Code to Edit Movies](https://img.youtube.com/vi/FBkfr1yWf_s/maxresdefault.jpg)](https://www.youtube.com/watch?v=FBkfr1yWf_s)
-
-*Click to watch "I Taught Claude Code to Edit Movies" on YouTube*
-
-## Getting Started
-
-[![ButterCut Install Video](https://img.youtube.com/vi/BCMQzg-HiTw/maxresdefault.jpg)](https://www.youtube.com/watch?v=BCMQzg-HiTw)
-
-*Click to watch the ButterCut install video on YouTube*
-
-**Clone ButterCut:**
-```bash
-git clone https://github.com/barefootford/buttercut.git && cd buttercut
-```
-
-**Open Claude Code:**
-```bash
+# Open Claude Code
 claude
 
-# or skip permission prompts (faster, but riskier):
-claude --dangerously-skip-permissions
-```
-
-**Tell Claude to install ButterCut:**
-```
+# Install dependencies
 > Install ButterCut
-```
-
-Claude will check your system and install any missing dependencies (Ruby, Python, FFmpeg, WhisperX).
-
-For manual installation, see [docs/installation.md](docs/installation.md).
-
-## Usage
-
-First tell Claude to create a **Library**. A library organizes your video footage along with audio and visual transcripts. Then tell Claude you want to create a **rough cut** or **sequence**.
-
-### Creating a Video Library
-
-```plaintext
+Claude will handle system checks and install Ruby, Python, FFmpeg, and WhisperX as needed.
+For manual setup → docs/installation.md
+Usage
+1. Create a Library
+A library organizes your footage with audio/visual transcripts.
 You: "I want to build a new library"
-
-Claude: [Guides you through library setup and asks for details]
-
-You:
-  - Library name: "wedding"
-  - Video location: "/path/to/videos"
-  - Language: "English"
-
-Claude: [Automatically processes all videos]
-  ✓ Creates library structure
-  ✓ Transcribes audio with WhisperX
-  ✓ Analyzes video frames
-  ✓ Generates visual transcripts
-
-Result: Full footage analysis ready for rough cut creation
-```
-
-Claude handles the parallel processing, metadata extraction, and transcript generation. See the [full walkthrough](docs/example-library-setup.md) for a detailed example of me setting up a library from my wedding footage.
-
-### Creating a Roughcut or Sequence
-
-Once your library is analyzed, Claude can create rough cuts through an interactive conversation:
-
-```plaintext
+Claude: [Guides setup → processes videos → generates transcripts]
+2. Create a Rough Cut
 You: "Let's create a new roughcut"
+Claude: [Analyzes footage → asks preferences → exports timeline]
+You choose focus, duration, pacing, and target editor. Claude handles the rest.
+3. Import & Edit
+Open the exported XML/FCPXML in your editor and refine from there.
+Requirements
 
-Claude: [Loads roughcut skill and analyzes footage]
-        What should this roughcut focus on?
-        - Full story
-        - Just the meetup coverage
-        - Short teaser sequence
+Claude Code
+Ruby, Python 3, FFmpeg, WhisperX
+Final Cut Pro / Adobe Premiere Pro / DaVinci Resolve
 
-You: "Just the meetup coverage"
-
-Claude: [Asks 3 preference questions]
-        - Narrative structure? (chronological, thematic, hook-based)
-        - Target duration? (1-2 min, 3-5 min, 6-10 min)
-        - Pacing style? (fast & punchy, conversational, cinematic)
-
-You: "Start with presentations (5 sec clips), then interviews,
-      then my closing reflection. 3-5 minutes, conversational pacing."
-
-Claude: [Asks which video editor you want to use]
-        - Final Cut Pro X
-        - Adobe Premiere Pro
-        - DaVinci Resolve
-
-You: "Final Cut Pro X"
-
-Claude: [Creates roughcut with editorial decisions]
-        ✓ Combined visual transcripts
-        ✓ Selected 29 clips (4:32 total)
-        ✓ Exported to FCPXML
-
-Result: Ready-to-import timeline at:
-        libraries/[library]/roughcuts/[name]_[datetime].fcpxml
-```
-
-Claude makes editorial decisions based on transcript analysis and your preferences, then exports a timeline for your editor.
-
-### XML Generation
-
-For direct XML generation without Claude Code, see [docs/basic-xml-generation.md](docs/basic-xml-generation.md).
-
-## Thanks
-
-ButterCut was inspired by ambitious open source work from [Chris Hocking](https://github.com/CommandPost/CommandPost) and [Andrew Arrow](https://github.com/andrewarrow/cutlass/tree/main).
-
-## License
-
+Credits
+Originally built by barefootford. Inspired by work from Chris Hocking and Andrew Arrow.
+License
 MIT
-
-## Contributing
-
-Bug reports and pull requests welcome, with that said...
-
-**Guidelines:**
-- Write the body of your pull request or GitHub issue yourself. Don't use an agent (Claude Code, etc) to generate it.
-- Keep pull requests small and limited to a single feature or bugfix at a time. It's a lot easier to write code, I feel like it's just as hard as before to review code.
